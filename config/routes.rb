@@ -19,6 +19,20 @@ Rails.application.routes.draw do
 
   end
 
+
+  namespace :auth do
+    #these are <representative, in reference to, exist on behalf of > the three auth controllers
+    resources :users, only: [:create, :new]
+    resource :session, only: [:create, :new]
+  end
+
+  get 'login' => 'auth/sessions#new'
+  post 'login' => 'auth/sessions#create'
+  delete 'logout' => 'auth/sessions#destroy'
+
+  get 'register' => 'auth/users#new'
+  post 'register' => 'auth/users#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
