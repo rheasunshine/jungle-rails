@@ -30,9 +30,9 @@
 
 
         <% if current_user %>
+        <li class="current-user">Hi, <%= current_user.first_name %></li>
 
         <li>
-          Hi, <%= current_user.first_name %>
           <%= link_to '/logout' do %>
             <%= fa_icon "user-times" %> Logout
           <% end %>
