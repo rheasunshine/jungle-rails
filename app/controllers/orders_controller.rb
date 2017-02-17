@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    puts @order
   end
 
   def create
@@ -14,7 +15,8 @@ class OrdersController < ApplicationController
     else
       redirect_to cart_path, error: order.errors.full_messages.first
     end
-
+puts order
+puts charge
   rescue Stripe::CardError => e
     redirect_to cart_path, error: e.message
   end
@@ -53,6 +55,7 @@ class OrdersController < ApplicationController
       end
     end
     order.save!
+      OrderMailer.receipt_email(order).deliver_now if order.save
     order
   end
 
