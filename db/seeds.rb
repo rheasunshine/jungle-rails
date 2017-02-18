@@ -132,5 +132,37 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+## PRODUCTS
+
+puts "Finding or Creating Products ..."
+
+prod1 = Product.find(1)
+prod5 = Product.find(5)
+prod8 = Product.find(8)
+
+## PRODUCTS
+
+puts "Re-creating Reviews ..."
+
+Review.destroy_all
+
+prod1.reviews.create!({
+  user_id: 1,
+  description: 'Classy AND Sassy, this shirt has me lookin tastier than Molasseeee(s)',
+  rating: 5
+})
+
+prod5.reviews.create!({
+  user_id: 1,
+  description: 'These shoes have made my job so much better in Russia. I fit in perfectly. No one can ever recognize me because the shoes make me Russian. I wear these shoes for work every single day. I think it\'s important that I introduce myself so you understand how relevant my review is. I\'m Kromobopulos Michael. I\'m an assassin. Listen, if you ever need anybody murdered, please give me a call. I\'m very discreet. I have no code of ethics. I will kill anyone, anywhere children, animals, old people doesn\'t matter. I just love killing.',
+  rating: 5
+})
+
+prod8.reviews.create!({
+  user_id: 1,
+  description: 'This hotdog slicer works on everything and anything... EXCEPT FOR HOTDOGS. IT\'S A SCAM. DON\'T BUY THIS HOTDOG SLICER IF YOU\'RE TRYING TO SLICE HOTDOGS. YOU CAN SLICE POLISH SAUSAGE, ITALIAN SAUSAGE, AMERICAN SAUSAGE, MEXICAN SAUSAGE, GERMAN SAUSAGE, CANADIAN SAUSAGE, INDIAN SAUSAGE, RAW SAUSAGE, COOKED SAUSAGE, OLD SAUSAGE, NEW SAUSAGE, AND MORE. BUT NOT HOTDOGS. DON\'T WASTE YOUR MONEY!!!!',
+  rating: 1
+})
+
 
 puts "DONE!"
