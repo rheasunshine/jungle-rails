@@ -26,37 +26,62 @@
       </div>
     </div>
   </article>
+<br />
+<br />
+<br />
+<h2>Reviews</h2>
+<br />
+<div class="container">
+<div class="row">
+  <div>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Write a review
+    </button>
+  </div>
+</div>
 
 
+<br />
 
-<div>
-  <% @reviews.each do |review| %>
-    <p>Rating: <%=review.rating%></p>
-    <p>Description: <%=review.description%></p>
+  <div class="row" id="reviews-container">
+      <% @reviews.each do |review| %>
+        <p>Rating: <%=review.rating%></p>
+        <p>Description: <%=review.description%></p>
+      <% end %>
+  </div>
+
+
+<%= form_for(:review, method: :post, url: "/products/#{@product.id}/reviews") do |form| %>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Write a review</h4>
+        </div>
+
+  <div class="modal-body">
+    <div class="field">
+      <%= form.label :rating %>
+      <%= form.select :rating, options_for_select([1, 2, 3, 4, 5]), class: 'form-control' %>
+    </div>
+    <div>
+      <%= form.label :description %>
+      <%= form.submit 'Add Review', class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewreviewclose">Close</button>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+</div>
+  <div class="form-group">
+  </div>
+  <div class="form-group">
+  </div>
+  </div>
+
   <% end %>
 </div>
-
-
-
-
-<div class="new-review">
-  <br /><h3>Write a review</h3>
-
-<%= form_for :review, url: "/products/#{@product.id}/reviews" do |form| %>
-
-<div class="form-group">
-  <%= form.label :rating %>
-  <%= form.select :review_rating, options_for_select([1, 2, 3, 4, 5]), class: 'form-control' %>
-</div>
-<div class="form-group">
-  <%= form.label :description %>
-  <%= form.text_area :description, class: 'form-control' %>
-</div>
-<%= form.submit 'Add Review', class: 'btn btn-primary' %>
-<% end %>
-</div>
-
-
-
-
-</section>
