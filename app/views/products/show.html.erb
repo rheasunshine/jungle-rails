@@ -25,8 +25,9 @@
         </dl>
       </div>
     </div>
-
   </article>
+
+
 
 <div>
   <% @reviews.each do |review| %>
@@ -34,6 +35,28 @@
     <p>Description: <%=review.description%></p>
   <% end %>
 </div>
+
+
+
+
+<div class="new-review">
+  <br /><h3>Write a review</h3>
+
+<%= form_for :review, url: "/products/#{@product.id}/reviews" do |form| %>
+
+<div class="form-group">
+  <%= form.label :rating %>
+  <%= form.select :review_rating, options_for_select([1, 2, 3, 4, 5]), class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= form.label :description %>
+  <%= form.text_area :description, class: 'form-control' %>
+</div>
+<%= form.submit 'Add Review', class: 'btn btn-primary' %>
+<% end %>
+</div>
+
+
 
 
 </section>
