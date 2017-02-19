@@ -8,26 +8,25 @@
     </div>
     <div class="panel-body">
         <div style="color:#3882D6;">
-          <%= time_ago_in_words(review.created_at) %>
+          Posted <%= time_ago_in_words(review.created_at) %> ago
         </div><br />
         <div class="btn-group" role="group" aria-label="...">
           <button type="button" class="btn btn-warning" data-toggle="modal" data-target="my_update_review_<%= review.id %>">
-            Delete
+            <%= link_to 'Delete', method: :destroy, url: "/#{@product.id}/review#destroy" %>
           </button>
-          <%= link_to 'Destroy', review, method: :destroy, url: "/products/#{@product.id}/reviews#create" class: "btn btn-danger" %>
 
         </div>
     </div>
   </div>
 </div>
 
-<%= form_for(:review, method: :put, url: "/products/#{@product.id}/reviews#update", remote: true)  do |form| %>
+<%= form_for(:review, method: :put, url: "/#{@product.id}/review#update")  do |form| %>
 <div class="modal fade" id="my_update_review_<%= review.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden:"true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Edit</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+        <h4 class="modal-title">Edit</h4></button>
       </div>
       <div class="modal-body">
 
@@ -40,11 +39,10 @@
           <%= form.text_area :description, class: 'form-control' %>
         </div>
 
-
       </div>
       <div class="modal-footer">
         <button type="button" id="my_update_review_<%= review.id %>" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= form.submit 'Add Review', class: 'btn btn-primary' %>
+        <%= form.submit 'Edit Review', class: 'btn btn-primary' %>
       </div>
     </div>
   </div>

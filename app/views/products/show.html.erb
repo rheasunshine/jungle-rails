@@ -46,8 +46,9 @@
 
   <div class="row" id="reviews-container">
       <% @reviews.each do |review| %>
-        <p>Rating: <%=review.rating%></p>
-        <p>Description: <%=review.description%></p>
+        <div>
+        <%= render 'review', review: review %>
+
       <% end %>
   </div>
 

@@ -13,7 +13,9 @@ class ReviewsController < ProductsController
     rating = params[:review][:rating]
     description = params[:review][:description]
     if rating && description
-      product.reviews.create!(user_id: current_user.id, rating: rating.to_i, description: description)
+    product.reviews.create!(user_id: current_user.id, rating: rating.to_i, description: description)
+    @review = product.reviews.create!(user_id: current_user.id, rating: rating.to_i, description: description)
+
     end
   else
     redirect_to "/products/#{params[:product_id]}"
@@ -21,9 +23,8 @@ class ReviewsController < ProductsController
 
 
   def destroy
-    @review = Review.find(params[:id])
-    @review.destroy
-    redirect_to "/products/#{params[:product_id]}"
+ Review.find(@review.id).destroy
+
   end
 
 
