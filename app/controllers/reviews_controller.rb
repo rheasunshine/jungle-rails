@@ -1,5 +1,7 @@
-class ReviewsController < ProductsController
+class ReviewsController < ApplicationController
 
+@average_rating = Review.average(:rating)
+byebug
   # @reviews = Review.where(product_id: params[:id])
   before_action :require_login
 
@@ -8,13 +10,14 @@ class ReviewsController < ProductsController
   end
 
   def create
-    byebug
     product = Product.find(params[:product_id].to_i)
     rating = params[:review][:rating]
     description = params[:review][:description]
     if rating && description
-    product.reviews.create!(user_id: current_user.id, rating: rating.to_i, description: description)
-    @review = product.reviews.create!(user_id: current_user.id, rating: rating.to_i, description: description)
+    # product.reviews.create!(user_id: current_user.id, rating: rating.to_i, description: description)
+    @review = Review.new(product_id: product.id, user_id: current_user.id, rating: rating.to_i, description: description)
+    @review.save
+    byebug
 
     end
   else
@@ -23,8 +26,22 @@ class ReviewsController < ProductsController
 
 
   def destroy
- Review.find(@review.id).destroy
+    @product = Product.find(params[:product_id])
+    @review = Review.find(params[:id])
+byebug
+if @review.destroy
+  flash[:notice] = "Your review was deleted successfully."
+  redirect_to @product
+else
+  flash[:error] = "There was an error deleteing the purchase."
+  render :show
+ end
 
+# if @review
+#     @review.destroy
+# else
+#       redirect_to "/products/#{params[:product_id]}"
+#     end
   end
 
 
