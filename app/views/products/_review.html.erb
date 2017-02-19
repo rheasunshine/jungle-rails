@@ -14,15 +14,14 @@
           <button type="button" class="btn btn-warning" data-toggle="modal" data-target="my_update_review_<%= review.id %>">
             Delete
           </button>
-          <%= link_to 'Destroy', review, method: :delete, class: "btn btn-danger" %>
+          <%= link_to 'Destroy', review, method: :destroy, url: "/products/#{@product.id}/reviews#create" class: "btn btn-danger" %>
 
         </div>
     </div>
   </div>
 </div>
 
-
-<%= form_for review, method: :post do |form| %>
+<%= form_for(:review, method: :put, url: "/products/#{@product.id}/reviews#update", remote: true)  do |form| %>
 <div class="modal fade" id="my_update_review_<%= review.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden:"true">
   <div class="modal-dialog">
     <div class="modal-content">
