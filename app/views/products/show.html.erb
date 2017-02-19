@@ -35,6 +35,29 @@
 
     <h2>Reviews</h2>
     <h3>Average rating: <%= @average_rating %></h3>
+          <%
+            rating = @average_rating
+            stars = 0
+            half_star = 0
+            empty = 0
+              if rating.to_i == rating
+                half_star += 0
+                stars += rating.to_i
+                empty += 5 - (half_star + stars)
+              else
+                half_star += 1
+                stars += rating.to_i
+                empty += 5 - (half_star + stars)
+              end
+            stars.times do %>
+                <img src="gold-star-on.png" height='30px' width='30px' />
+            <% end %>
+            <% if half_star > 0 %>
+                <img src="gold-star-half.png" height='30px' width='30px' />
+            <% end %>
+            <% empty.times do %>
+                <img src="gold-star-off.png" height='30px' width='30px' />
+            <% end %>
 
     <% if current_user %>
       <div class="container">
