@@ -1,8 +1,5 @@
 class ReviewsController < ApplicationController
 
-@average_rating = Review.average(:rating)
-byebug
-  # @reviews = Review.where(product_id: params[:id])
   before_action :require_login
 
   def new
@@ -17,7 +14,7 @@ byebug
     # product.reviews.create!(user_id: current_user.id, rating: rating.to_i, description: description)
     @review = Review.new(product_id: product.id, user_id: current_user.id, rating: rating.to_i, description: description)
     @review.save
-    byebug
+    # byebug
 
     end
   else
@@ -28,7 +25,7 @@ byebug
   def destroy
     @product = Product.find(params[:product_id])
     @review = Review.find(params[:id])
-byebug
+# byebug
 if @review.destroy
   flash[:notice] = "Your review was deleted successfully."
   redirect_to @product

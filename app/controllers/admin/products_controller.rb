@@ -20,7 +20,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def destroy
     @product = Product.find params[:id]
-    byebug
+    # byebug
     @product.destroy
     redirect_to [:admin, :products], notice: 'Product deleted!'
   end
