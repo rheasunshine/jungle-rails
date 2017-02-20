@@ -1,4 +1,4 @@
-class Admin::ProductsController < Admin::BaseController
+class Admin::ProductsController <  Admin::BaseController
 
   def index
     @products = Product.order(id: :desc).all
@@ -34,6 +34,8 @@ class Admin::ProductsController < Admin::BaseController
       :image,
       :price
     )
+
+
   end
 
 end
