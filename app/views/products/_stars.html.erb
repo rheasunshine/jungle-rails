@@ -1,0 +1,27 @@
+
+
+<h2 style="color:#f0ad4e">
+      <%
+        rating = rating
+        stars = 0
+        half_star = 0
+        empty = 0
+          if rating.to_i == rating
+            half_star += 0
+            stars += rating.to_i
+            empty += 5 - (half_star + stars)
+          else
+            half_star += 1
+            stars += rating.to_i
+            empty += 5 - (half_star + stars)
+          end
+        stars.times do %>
+          <%= fa_icon "star" %>
+        <% end %>
+        <% if half_star > 0 %>
+          <%= fa_icon "star-half-o" %>
+        <% end %>
+        <% empty.times do %>
+          <%= fa_icon "star-o" %>
+        <% end %>
+</h2>
