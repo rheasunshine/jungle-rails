@@ -36,29 +36,8 @@
     <h2>Reviews</h2>
 
 <h2 style="color:#f0ad4e">
-      <%
-        rating = @average_rating
-        stars = 0
-        half_star = 0
-        empty = 0
-          if rating.to_i == rating
-            half_star += 0
-            stars += rating.to_i
-            empty += 5 - (half_star + stars)
-          else
-            half_star += 1
-            stars += rating.to_i
-            empty += 5 - (half_star + stars)
-          end
-        stars.times do %>
-          <%= fa_icon "star" %>
-        <% end %>
-        <% if half_star > 0 %>
-          <%= fa_icon "star-half-o" %>
-        <% end %>
-        <% empty.times do %>
-          <%= fa_icon "star-o" %>
-        <% end %>
+  <%= render 'stars', rating: @average_rating%>
+
 </h2>
 <h4 style="color:#000000">
   Average rating: <%= @average_rating %> stars
@@ -116,8 +95,20 @@
             <div class="panel panel-info">
               <div class="panel-heading">
                 <div class="panel-title">
-                  <h3>Rating: <%= review.rating %> </h3>
-                  <p><%=review.description%></p>
+                  <h3><em>Rating: <%= review.rating %> </em></h3>
+
+                  <h4 style="color:#f0ad4e">
+
+                  <%= render 'stars', rating: review.rating%>
+
+</h4>
+
+
+
+
+
+
+                  <p id="review-description"><%=review.description%></p>
                 </div>
                 <div class="panel-body">
                   <div style="color:#3882D6;">
