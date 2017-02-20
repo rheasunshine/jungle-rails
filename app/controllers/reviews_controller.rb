@@ -20,8 +20,8 @@ class ReviewsController < ApplicationController
         flash[:error] = "There was an error deleteing the purchase."
         render :show
       end
+    end
   end
-end
 
   def destroy
     @product = Product.find(params[:product_id])
@@ -36,8 +36,8 @@ end
   end
 
   private
-    def require_login
-      redirect_to login_path unless current_user
-    end
+  def require_login
+    redirect_to login_path unless current_user
+  end
 
 end
