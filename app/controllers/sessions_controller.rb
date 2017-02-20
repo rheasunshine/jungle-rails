@@ -6,13 +6,7 @@ def create
   if @user && @user.authenticate(params[:password])
     # Save the user id inside the browser cookie. This is how we keep the user
     # logged in when they navigate around our website.
-    puts "authenticated"
-    # puts current_user
-    # puts current_user
     session[:user_id] = @user.id
-#     byebug
-#     $current_user = User.find(session[:user_id])
-# puts $current_user
     redirect_to '/'
   else
     puts "authentication failed"
