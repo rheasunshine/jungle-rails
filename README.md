@@ -1,3 +1,7 @@
+FIND ME DEPLOYED ON HEROKU AT:
+https://murmuring-hamlet-10672.herokuapp.com/
+
+
 # Jungle
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
