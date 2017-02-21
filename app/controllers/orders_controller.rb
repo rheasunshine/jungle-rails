@@ -15,8 +15,7 @@ class OrdersController < ApplicationController
     else
       redirect_to cart_path, error: order.errors.full_messages.first
     end
-puts order
-puts charge
+
   rescue Stripe::CardError => e
     redirect_to cart_path, error: e.message
   end
@@ -55,7 +54,7 @@ puts charge
       end
     end
     order.save!
-      OrderMailer.receipt_email(order).deliver_now if order.save
+      OrderMailer.receipt_email(order).deliver_later if order.save
     order
   end
 
