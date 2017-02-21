@@ -55,6 +55,8 @@ class OrdersController < ApplicationController
     end
     order.save!
       # OrderMailer.receipt_email(order).deliver_later if order.save
+      # the mailer works on the local host, but stopped by program when using on the heroku deployment,
+      # so I commented it out here
     order
   end
 
