@@ -9,7 +9,7 @@
           <%= image_tag @product.image.url, class: 'main-img' %>
         </div>
         <div class="col-sm-8">
-          <dl class="dl-horizontal" style="font-size:200%;">
+          <dl class="dl-horizontal" style="font-size:170%;">
             <dt>Name</dt>
             <dd style="font-weight:200;"><%= @product.name %></dd>
             <dt>Description</dt>
@@ -24,7 +24,7 @@
     </article>
     <br />
     <br />
-    <br />
+    <hr />
     <h2>Reviews</h2>
     <h2 style="color:#f0ad4e">
       <%= render 'stars', rating: @average_rating%>
