@@ -1,16 +1,19 @@
 <%
-rating = rating
 stars = 0
 half_star = 0
-empty = 0
-if rating.to_i == rating
+empty = 5
+if rating == nil
+  stars = 0
+  half_star = 0
+  empty = 5
+elsif rating.to_i == rating
   half_star += 0
   stars += rating.to_i
-  empty += 5 - (half_star + stars)
+  empty -= (half_star + stars)
 else
   half_star += 1
   stars += rating.to_i
-  empty += 5 - (half_star + stars)
+  empty -= (half_star + stars)
 end
 stars.times do
 %>

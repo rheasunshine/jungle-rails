@@ -30,7 +30,7 @@
       <%= render 'stars', rating: @average_rating%>
     </h2>
     <h4 style="color:#000000">
-      Average rating: <%= @average_rating %> stars
+      Average rating: <%= @average_rating %><% if @average_rating == nil %> No reviews yet!<% else %> stars<% end %>
     </h4>
     <br />
     <% if current_user %>
