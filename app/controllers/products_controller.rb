@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find params[:id]
     @reviews = Review.where(product_id: params[:id]).order(created_at: :desc)
-    if @reviews.length > 1
+    if @reviews.length > 0
       @average_rating = Review.where(product_id: params[:id]).average(:rating).round(2)
     end
   end
