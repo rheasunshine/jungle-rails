@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
       end
     end
     order.save!
-      OrderMailer.receipt_email(order).deliver_later if order.save
+      # OrderMailer.receipt_email(order).deliver_later if order.save
     order
   end
 
